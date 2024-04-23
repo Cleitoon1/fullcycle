@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  laravel:
+    build:
+      context: ./
+      dockerfile: Dockerfile.prod
+    image: cleitoon1/laravel:prod
+    container_name: laravel
+    networks:
+      - laranet
+
+  nginx:
+    build:
+      context: ../nginx
+      dockerfile: Dockerfile.prod
+    image: cleitoon1/nginx:prod
+    container_name: nginx
+    networks:
+      - laranet
+
+networks:
+  laranet:
+    driver: bridge
