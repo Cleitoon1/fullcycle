@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Desafio Full Cycle
+    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+        <h1>Full Cycle Rocks!</h1>
+        <h5>Lista de pessoas no banco de dados</h5>
+        <br/>
+
+        <h6>Cadastrar Novo:</h6>
+        <form id="register" method="post" action="/submit">
+            <input type="text" id="name" name="name">
+            <input type="submit" value="Enviar">
+        </form>
+    
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if(data.length){ for(var i = 0; i< data.length; i++) {%>
+            <tr>
+                <td><%= data[i].id%></td>
+                <td><%= data[i].name%></td>
+            </tr>
+            <% } }else{ %>
+            <tr>
+                <td>Sem pessoas cadastradas</td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

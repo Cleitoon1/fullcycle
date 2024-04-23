@@ -1,0 +1,1 @@
+Executar compose (pasta raiz): `docker compose up -d`
