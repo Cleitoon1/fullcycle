@@ -17,7 +17,7 @@ services:
       - DB_NAME=nodedb
     depends_on:
       - db
-    entrypoint: wait-for db:3306 -t 40 -- node app.js
+    entrypoint: wait-for db:3306 -t 40 -- ./entrypoint.sh
     tty: true
 
   db:
