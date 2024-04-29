@@ -1,4 +1,4 @@
-Assuntos Abordados:
+Assuntos que serão abordados:
  - Git Flow
  - Configurações das branches
  - Pull Requests / Templates para PR
