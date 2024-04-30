@@ -26,9 +26,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        working-directory: ./03\ -\ integracao\ continua/ci-go/
         id: docker_build
         uses: docker/build-push-action@v2
+        working-directory: ./03\ -\ integracao\ continua/ci-go/
         with:
           push: false
           tags: cleitoon1/introducao-ci-go:latest
