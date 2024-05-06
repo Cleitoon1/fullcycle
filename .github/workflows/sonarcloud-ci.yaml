@@ -17,6 +17,9 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./03 - integracao continua/sonarqube/go/
     steps:
       - uses: actions/checkout@v3
         with:
