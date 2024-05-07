@@ -22,5 +22,3 @@ https://docs.github.com/en/billing/managing-billing-for-github-actions/about-bil
 
 
 Ele tem diversos exemplos de workflow e um market place com diversos actions criados por terceiros para diversas linguagens não atoa cresceu muito nos ultimos tempo
-
-

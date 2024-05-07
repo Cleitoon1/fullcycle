@@ -31,3 +31,4 @@ mesmo esquema da aplicação go, configurar o sonar-project.properties e depois 
 
 
 sonarcloud - instância do sonarqube na nuvem
+Adicionando o projeto go ao SonarCloud, ver sonarcloud-ci e o sonar-projct do projeto go, além das configurações no sonarcloud
