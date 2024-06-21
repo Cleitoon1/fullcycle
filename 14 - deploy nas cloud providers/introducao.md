@@ -7,9 +7,8 @@ Vantegens da computação em nuvem:
  - Dsitribuição global
  - Escala
  - Simplicidade de geranciamento
-   
 
-Tipo de Serviço
+Tipos de Serviços
  - On Premise
  - Infra como serviço
  - Plataforma como serviço
