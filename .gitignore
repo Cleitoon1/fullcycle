@@ -3,3 +3,5 @@ database
 .scannerwork
 coverage.out
 coverage
+.terraform
+.terraform.lock.hcl
