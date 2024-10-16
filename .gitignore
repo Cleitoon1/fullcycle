@@ -5,3 +5,4 @@ coverage.out
 coverage
 .terraform
 .terraform.lock.hcl
+elasticsearch_data
