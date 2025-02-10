@@ -1,0 +1,7 @@
+AWS - Amazon Web Services, criada em 2006, surgiu com a ideia de utilizar a infra interna como serviço para os clientes
+
+Conceitos de disponibidade: 
+ - Region (Região): é uma area onde a AWS tem infra disponível no mundo, exemplo canada, estados unidos (onde tem varias), Europa, São Paulo (a única na America do Sul) e etc
+ - Zona de disponibilidade: São os data centers daquela região, para conseguir ter uma maior disponibilidade em cada região a AWS tem vários data center por região porque caso acontece algo com algum daqueles data center tem os outros de bkps e os clientes não vão ter suas perfomances prejudicadas, maaas isso é algo configurável não é algo por padrão a gente tem que configurar essas zonas até porque é mais caro estar em mais servidores, ponto interessante é q entre cada data center tem que ter pelo menos 100kms para caso aconteceça algo em um tenha menos chances de afetar outros
+ - Zona local: São data center menores mais perto de cada zona de disponibilidade para aumentar a eficiência e diminuir a latência pois por estar mais perto vai ter um tempo de resposta menor, muito utilizado em jogos e streams, e não está disponível todas regiões em São Paulo mesmo não temos esse recurso habilitado
+ - Wavelength: é quando a AWS coloca uma infra em uma operada de celular para que consiga disponibilizar recursos mais rapido para os usuários, algo muito específico, para aplicações que utilizam 3 e 4g interessante saber que existe, não está disponível em todas regiões, em São Paulo por exemplo não tem esse recurso
