@@ -1,0 +1,59 @@
+# Performance
+ - É o desempenho que um software possui para completar um determinado workload(tarefa)
+  - As unidades de medida para avaliarmos a performance de um software são:
+   - Latência ou "response time"
+    - Diminuir o tempo de resposta é melhorar a performance
+    - Normalmente medida em milisegundos (se o padrão for medir em segundos é que o problema é muito mais embaixo)
+    - É afetada pelo temo de processamento da aplicação, rede e chamadas externas
+  - Throughput 
+    - https://tacontratado.com.br/glossario/throughput-importancia-aplicacoes/
+    - Fazer com que o sistema consiga lidar com um número maior de requisições
+    - Diretamente ligado a latência
+ - Ter um software perfomático é diferente de ter um software escalável !
+ - Princiapis razões para baixa perfomance
+  - Processamento ineficiente
+  - Recursos computacionais limitados
+  - Trabalhar de forma bloqueante
+  - Acesso serial a recursos
+ - Principais formas para aumentar a eficiência
+  - Aumentar a escala da capacidade computacional (CPU, disco, memória, rede)
+  - Lógica por trás do software (algoritmos, queries, overhead de frameworks)
+  - Concorrência e paralelismo
+  - Banco de dados (tipos de bancos, schema)
+  - Caching
+ - Capacidade computacional - Escala vertival vs horizontal
+  - Escala Vertical: aumento da capacidade computacional, aumentar os recursos da máquina (aumentar memória, disco, cpu)
+  - Escola Horizontal: aumento da capacidade de máquinas, aumentar o número de máquinas (de 1 para 3 por exemplo)
+ - Diferença entre concorrência e paralelismo:
+  - "Concorrência é sobre lidar com muitas coisas ao mesmo tempo. paralelismo é fazer muitas coisas ao mesmo tempo". Rob Pike
+ - Caching
+  - Cache de borda / edge computing
+  - Dados estáticos
+  - Paginas Web
+  - Funções interas
+   - Evita reprocessamento de algoritmos pesados
+   - Acesso ao banco de dados
+  - Objetos
+  - Caching exclusivo vs Compartilhado
+   - Exclusivo (cache local):
+    - Baixa latência
+    - duplicado entre os nós
+    - problemas relacionados a sessões (coisas apenas em uma máquina e ai começam os problemas)
+   - Compartilhado (servido de cache centratilizado)
+    - Maior latência
+    - Não há duplicação
+    - Sessões compatilhadas
+    - Banco de dados externo
+     - MySQL
+     - Redis
+     - Memcache
+ - Cache vs Edge computing (computação de borda)
+  - Cache realizado mais próximo ao usuário
+  - Evita a requisição chegar até a cloud provider / infra
+  - Normalmente arquivos estáticos
+  - CDN - Content Delivery Network
+  - Cloudfare workers
+  - Vercel
+
+
+
