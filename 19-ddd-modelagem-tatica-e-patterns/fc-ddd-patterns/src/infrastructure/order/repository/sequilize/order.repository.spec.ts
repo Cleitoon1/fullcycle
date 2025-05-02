@@ -176,8 +176,7 @@ describe("Order repository test", () => {
       await orderRepository.update(order);
 
       const orderResult = await orderRepository.find(order.id);       
-      console.log(order);
-      console.log(orderResult);
-        expect(order).toStrictEqual(orderResult);
-      });
+
+      expect(order).toStrictEqual(orderResult);
+    });
 });
