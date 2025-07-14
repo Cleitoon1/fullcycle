@@ -13,6 +13,10 @@ export default class FindClientUseCase implements IUseCase
     async execute(input: FindClientUseCaseInputDto): Promise<FindClientUseCaseOutputDto> {
         const client = await this._clientRepository.find(input.id);
 
+        if(!client) {
+            return null;
+        }
+
         return {
             id: client.id.value,
             name: client.name,

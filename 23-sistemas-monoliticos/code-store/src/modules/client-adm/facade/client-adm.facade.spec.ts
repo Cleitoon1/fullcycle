@@ -31,7 +31,14 @@ describe("Client Adm Facade test", () => {
         name: "John Doe",
         email: "jodn@doe.com",
         document: "123456789",
-        address: "Rua 123"
+        address: {
+          street: "Rua 123",
+          number: "123",
+          complement: "Apt 1",
+          city: "City",
+          state: "State",
+          zipCode: "12345-678"
+        }
       }
   
       await facade.add(input)
@@ -43,7 +50,12 @@ describe("Client Adm Facade test", () => {
       expect(client.name).toBe(input.name)
       expect(client.email).toBe(input.email)
       expect(client.document).toBe(input.document)
-      expect(client.address).toBe(input.address)
+      expect(client.street).toBe(input.address.street)
+      expect(client.number).toBe(input.address.number)
+      expect(client.complement).toBe(input.address.complement)
+      expect(client.city).toBe(input.address.city)
+      expect(client.state).toBe(input.address.state)
+      expect(client.zipCode).toBe(input.address.zipCode)
     })
   
     it("should find a client", async () => {
@@ -55,7 +67,14 @@ describe("Client Adm Facade test", () => {
         name: "Lucian",
         email: "lucian@xpto.com",
         document: "1234-5678",
-        address: "Rua 123"
+        address: {
+          street: "Rua 123",
+          number: "123",
+          complement: "Apt 1",
+          city: "City",
+          state: "State",
+          zipCode: "12345-678"
+        }
       }
   
       await facade.add(input)
@@ -67,6 +86,11 @@ describe("Client Adm Facade test", () => {
       expect(client.name).toBe(input.name)
       expect(client.email).toBe(input.email)
       expect(client.document).toBe(input.document)
-      expect(client.address).toBe(input.address);
+      expect(client.address.street).toBe(input.address.street)
+      expect(client.address.number).toBe(input.address.number)
+      expect(client.address.complement).toBe(input.address.complement)
+      expect(client.address.city).toBe(input.address.city)
+      expect(client.address.state).toBe(input.address.state)
+      expect(client.address.zipCode).toBe(input.address.zipCode)
     })
   })

@@ -1,9 +1,11 @@
+import Address from "../../../@shared/domain/value-object/address.value-object";
+
 export interface addClientUseCaseInputDto {
   id?: string,
   name: string;
   email: string;
   document: string;
-  address: string;
+  address: Address;
 }
 
 export interface addClientUseCaseOutputDto {
@@ -11,7 +13,7 @@ export interface addClientUseCaseOutputDto {
   name: string;
   email: string;
   document: string;
-  address: string;
+  address: Address;
   createdAt: Date;
   updatedAt: Date;
 }

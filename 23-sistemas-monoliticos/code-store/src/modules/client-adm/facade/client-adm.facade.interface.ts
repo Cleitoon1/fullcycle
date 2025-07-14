@@ -1,10 +1,11 @@
+import Address from "../../@shared/domain/value-object/address.value-object"
 
 export interface AddClientFacadeInputDto {
     id?: string
     name: string
     email: string
     document: string
-    address: string
+    address: Address
   }
   
   export interface FindClientFacadeInputDto {
@@ -16,7 +17,14 @@ export interface AddClientFacadeInputDto {
     name: string
     email: string
     document: string
-    address: string
+    address: {
+      street: string
+      number: string
+      complement: string
+      city: string
+      state: string
+      zipCode: string
+    }
     createdAt: Date
     updatedAt: Date
   }

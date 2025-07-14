@@ -2,6 +2,7 @@ import Id from "../../../@shared/domain/value-object/id.value-object";
 import Client from "../../domain/client.entity";
 import FindClientUseCase from "./find-client.usecase";
 
+//@ts-expect-error - missing params from base entity (not required)
 const client = new Client({
   id: new Id("123"),
   name: "John Doe",

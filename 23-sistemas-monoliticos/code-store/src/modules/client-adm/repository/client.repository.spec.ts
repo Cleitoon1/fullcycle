@@ -3,6 +3,7 @@ import { ClientModel } from "./client.model"
 import ClientRepository from "./client.repository"
 import Client from "../domain/client.entity"
 import Id from "../../@shared/domain/value-object/id.value-object"
+import Address from "../../@shared/domain/value-object/address.value-object"
 
 describe("Client Repository test", () => {
 
@@ -26,13 +27,21 @@ describe("Client Repository test", () => {
 
   it("should create a client", async () => {
 
+    //@ts-expect-error - no passing all params
     const client = new Client({
       id: new Id("1"),
       name: "John doe",
       email: "johndoe@teste.com",
       document: "123456789",
-      address: "Rua 123",
-    })
+      address: new Address({
+        street: "Rua 123",
+        number: "123",
+        complement: "Apt 1",
+        city: "City",
+        state: "State",
+        zipCode: "12345-678"
+      }),
+    });
 
     const repository = new ClientRepository()
     await repository.add(client)
@@ -44,7 +53,12 @@ describe("Client Repository test", () => {
     expect(clientDb.name).toEqual(client.name)
     expect(clientDb.email).toEqual(client.email)
     expect(clientDb.document).toEqual(client.document)
-    expect(clientDb.address).toEqual(client.address)
+    expect(clientDb.street).toEqual(client.address.street)
+    expect(clientDb.number).toEqual(client.address.number)
+    expect(clientDb.complement).toEqual(client.address.complement)
+    expect(clientDb.city).toEqual(client.address.city)
+    expect(clientDb.state).toEqual(client.address.state)
+    expect(clientDb.zipCode).toEqual(client.address.zipCode)
     expect(clientDb.createdAt).toStrictEqual(client.createdAt)
     expect(clientDb.updatedAt).toStrictEqual(client.updatedAt)
   })
@@ -56,7 +70,12 @@ describe("Client Repository test", () => {
       name: 'Lucian',
       email: 'lucian@123.com',
       document: "1234-5678",
-      address: "Rua 123",  
+      street: "Rua 123",
+      number: "123",
+      complement: "Apt 1",
+      city: "City",
+      state: "State",
+      zipCode: "12345-678", 
       createdAt: new Date(),
       updatedAt: new Date()
     })
@@ -67,7 +86,13 @@ describe("Client Repository test", () => {
     expect(result.id.value).toEqual(client.id)
     expect(result.name).toEqual(client.name)
     expect(result.email).toEqual(client.email)
-    expect(result.address).toEqual(client.address)
+    expect(result.document).toEqual(client.document)
+    expect(result.address.street).toEqual(client.street)
+    expect(result.address.number).toEqual(client.number)
+    expect(result.address.complement).toEqual(client.complement)
+    expect(result.address.city).toEqual(client.city)
+    expect(result.address.state).toEqual(client.state)
+    expect(result.address.zipCode).toEqual(client.zipCode)
     expect(result.createdAt).toStrictEqual(client.createdAt)
     expect(result.updatedAt).toStrictEqual(client.updatedAt)
   })

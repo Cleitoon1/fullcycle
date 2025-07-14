@@ -15,3 +15,5 @@ Code Store - Contextos:
  Comunicação entre os modulos utilizando Facade, para ter o menor acoplamento possível entre os módulos
 
  Projeto sendo criado de acordo com as aula na pasta ./code-store
+
+ projeto interessante, porém o wesley trouxe uns códigos misteriosos no fim, além de ter ficado um pouco repetitivo, mas faz sentido pra fixar os conceitos e os exercícios, aaah os exercícios rs
