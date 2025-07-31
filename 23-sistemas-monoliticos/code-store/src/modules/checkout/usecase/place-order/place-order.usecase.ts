@@ -64,7 +64,7 @@ export default class PlaceOrderUseCase implements IUseCase
             client: myClient,
             products: products,
         });
-
+        const items = products.map((p) => { return { id: p.id.value, name: p.name, price: p.salesPrice}})
         const paymentResult = await this._paymentFacade.process({
             orderId: order.id.value,
             amount: order.total,
@@ -80,11 +80,7 @@ export default class PlaceOrderUseCase implements IUseCase
             city: myClient.address.city,
             state: myClient.address.state,
             zipCode: myClient.address.zipCode,
-            items: order.products.map((product) => ({
-                id: product.id.value,
-                name: product.name,
-                price: product.salesPrice,
-            })),
+            items: items,
         }) : null;
 
         paymentResult.status === "approved" && order.approve();

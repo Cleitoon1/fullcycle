@@ -7,6 +7,8 @@ type ProductProps = {
     name: string;
     description: string;
     salesPrice: number;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 export default class Product extends BaseEntity implements IAggregateRoot {
@@ -15,7 +17,7 @@ export default class Product extends BaseEntity implements IAggregateRoot {
     private _salesPrice: number;
 
     constructor(props: ProductProps) {
-        super(new Id(props.id));
+        super(new Id(props.id), props.createdAt, props.updatedAt);
         this._name = props.name;
         this._description = props.description;
         this._salesPrice = props.salesPrice;

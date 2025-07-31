@@ -9,18 +9,23 @@ type OrderProps = {
     client: Client;
     products: Product[];
     status?: string;
+    invoiceId: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 export default class Order extends BaseEntity implements IAggregateRoot {
     private _client: Client;
     private _products: Product[];
     private _status: string;
+    private _invoiceId: Id;
 
     constructor(props: OrderProps) {
-        super(new Id(props.id));
+        super(new Id(props.id), props.createdAt, props.updatedAt);
         this._client = props.client;
         this._products = props.products;
-        this._status = props.status || "pending";
+        this._status = props.status;
+        this._invoiceId = new Id(props.invoiceId);
     }
 
     get client(): Client {
@@ -43,10 +48,11 @@ export default class Order extends BaseEntity implements IAggregateRoot {
         return this._status === "approved";
     }
 
+    get invoiceId(): string {
+        return this._invoiceId.value;
+    }
+
     approve(): void {
-        if (this._status !== "pending") {
-            throw new Error("Order can only be approved if it is pending");
-        }
         this._status = "approved";
     }
 }

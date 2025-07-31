@@ -1,5 +1,6 @@
 import IUseCase from "../../../@shared/use-case/use-case.internface";
 import ProductGateway from "../../gateway/product.gateway";
+import { FindProductInputDto, FindProductOutputDto } from "./find-product.dto";
 
 export default class FindProductUseCase implements IUseCase {
 
@@ -9,7 +10,7 @@ export default class FindProductUseCase implements IUseCase {
         this._productRepository = productRepository;
     }
     
-    async execute(input: any): Promise<any> {
+    async execute(input: FindProductInputDto): Promise<FindProductOutputDto> {
         const product = await this._productRepository.find(input.id);
 
         return {
@@ -19,5 +20,4 @@ export default class FindProductUseCase implements IUseCase {
             salesPrice: product.salesPrice,
         };
     }
-
 }
