@@ -41,7 +41,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     try {
       customerModel = await CustomerModel.findOne({
         where: {
-          id,
+          id: id,
         },
         rejectOnEmpty: true,
       });
@@ -57,6 +57,8 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       customerModel.city
     );
     customer.changeAddress(address);
+    if(customerModel.active)
+      customer.activate();
     return customer;
   }
 

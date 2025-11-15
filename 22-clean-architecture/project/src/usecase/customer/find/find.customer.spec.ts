@@ -3,6 +3,21 @@ import CustomerModel from "../../../infrastructure/customer/repository/sequelize
 import CustomerRepository from "../../../infrastructure/customer/repository/sequelize/customer.repository";
 import Customer from "../../../domain/customer/entity/customer";
 import Address from "../../../domain/customer/value-object/address";
+import FindCustomerUseCase from "./find.customer.usecase";
+
+const customer = new Customer("123", "John Doe");
+const address = new Address("123 Main St", 456, "12345", "Anytown");
+customer.changeAddress(address);
+customer.activate();
+
+const mockRepository = () => {
+    return {
+        find: jest.fn().mockReturnValue(Promise.resolve(customer)),
+        findAll: jest.fn(),
+        create: jest.fn(),
+        update: jest.fn()
+    }
+}
 
 describe("test find customer use case", () => {
 
@@ -15,7 +30,7 @@ describe("test find customer use case", () => {
             logging: false,
             sync: { force: true }
         });
-        await sequelize.addModels([CustomerModel]);
+        sequelize.addModels([CustomerModel]);
         await sequelize.sync();
     });
 
@@ -24,27 +39,33 @@ describe("test find customer use case", () => {
     });
 
     it("should find a customer", async () => {
-        const customerRepository = new CustomerRepository();
-        const costumer = new Customer("123", "John Doe");
-        const address = new Address("123 Main St", 456, "12345", "Anytown");
-        costumer.changeAddress(address);
-        await customerRepository.create(costumer);
-
-
-        let input = { id: costumer.id };
-        const output = new FindCustomerUseCase(customerRepository).execute(input);
+        let input = { id: customer.id };
+        const repository = mockRepository();
+        const output = await new FindCustomerUseCase(repository).execute(input);
 
         expect(output).toEqual({
-            id: costumer.id,
-            name: costumer.name,
+            id: customer.id,
+            name: customer.name,
+            email: "",
             address: {
                 street: address.street,
                 number: address.number,
-                zipcode: address.zip,
+                zip: address.zip,
                 city: address.city
             },
-            active: costumer.isActive(),
-            rewardPoints: costumer.rewardPoints
         });
     });
+
+    it("should not find a customer", async () => {
+        let input = { id: "abacate"};
+        const repository = mockRepository();
+        repository.find.mockImplementation(() => {
+            throw new Error("Customer not found");
+        })
+        const usecase =  new FindCustomerUseCase(repository);
+
+        expect(async() => {
+            return await usecase.execute(input);
+        }).rejects.toThrow("Customer not found");
+    })
 })
