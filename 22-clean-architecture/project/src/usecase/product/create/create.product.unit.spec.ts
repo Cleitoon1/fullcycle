@@ -1,4 +1,7 @@
+import { Sequelize } from "sequelize-typescript";
+import ProductModel from "../../../infrastructure/product/repository/sequelize/product.model";
 import ProductCreateUseCase from "./create.product.usecase";
+import ProductRepository from "../../../infrastructure/product/repository/sequelize/product.repository";
 
 const input = {
     type: "a",
@@ -6,18 +9,26 @@ const input = {
     price: 100
 }
 
-const MockRepository = () => {
-    return {
-        find: jest.fn(),
-        findAll: jest.fn(),
-        create: jest.fn(),
-        update: jest.fn()
-    }
-}
-
 describe("Unit test create product use case", () => {
+    let sequelize: Sequelize;
+    
+    beforeEach(async () => {
+        sequelize = new Sequelize({
+            dialect: "sqlite",
+            storage: ":memory:",
+            logging: false,
+            sync: { force: true }
+        });
+        sequelize.addModels([ProductModel]);
+        await sequelize.sync();
+    });
+
+    afterEach(async () => {
+        await sequelize.close();
+    });
+
     it("should create a product", async () => {
-        const productRepository = MockRepository();
+        const productRepository = new ProductRepository();
         const productCreateUserCase = new ProductCreateUseCase(productRepository);
         
         const output = await productCreateUserCase.execute(input);
@@ -30,8 +41,8 @@ describe("Unit test create product use case", () => {
     });
 
     it("should thrown an error when name is missing", () => {
-        const customerRepository = MockRepository();
-        const productCreateUserCase = new ProductCreateUseCase(customerRepository);
+        const productRepository = new ProductRepository();
+        const productCreateUserCase = new ProductCreateUseCase(productRepository);
         
         input.name = "";
         
@@ -41,8 +52,8 @@ describe("Unit test create product use case", () => {
     })
 
     it("should thrown an error when price is lower or qual than 0", () => {
-        const customerRepository = MockRepository();
-        const productCreateUserCase = new ProductCreateUseCase(customerRepository);
+        const productRepository = new ProductRepository();
+        const productCreateUserCase = new ProductCreateUseCase(productRepository);
         
         input.name = "Product 1";
         input.price = 0;
